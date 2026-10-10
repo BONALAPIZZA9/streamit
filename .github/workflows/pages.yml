@@ -2,9 +2,10 @@ name: Pubblica StreamIt
 on:
   push:
     branches: [main]
+    paths-ignore: ['kodi/**']
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 concurrency:
@@ -24,11 +25,24 @@ jobs:
       - uses: actions/configure-pages@v5
         id: pages
       - name: Estrai sorgenti
-        run: python -m zipfile -e StreamIt-GitHub.zip source
+        run: |
+          python -m zipfile -e StreamIt-GitHub.zip source
+          cp build_repository.py source/build_repository.py
       - name: Genera repository Kodi
         env:
           BASE_URL: ${{ steps.pages.outputs.base_url }}
         run: python source/build_repository.py --base-url "$BASE_URL" --output _site
+      - name: Aggiorna indice diretto GitHub
+        run: |
+          mkdir -p kodi
+          cp _site/addons.xml _site/addons.xml.sha256 kodi/
+          git add kodi
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Aggiorna indice Kodi"
+            git push
+          fi
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
