@@ -35,7 +35,11 @@ jobs:
       - name: Aggiorna indice diretto GitHub
         run: |
           mkdir -p kodi
-          cp _site/addons.xml _site/addons.xml.sha256 kodi/
+          cp _site/addons.xml _site/addons.xml.sha256 _site/addons-*.xml* kodi/
+          for index in kodi/addons-*.xml; do
+            cp _site/addons.xml "$index"
+            cp _site/addons.xml.sha256 "$index.sha256"
+          done
           git add kodi
           if ! git diff --cached --quiet; then
             git config user.name "github-actions[bot]"

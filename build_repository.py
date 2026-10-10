@@ -17,14 +17,14 @@ def build(base_url, output):
     addon = ET.parse(source / 'addon.xml').getroot()
     output.mkdir(parents=True, exist_ok=True)
     repo = ET.Element('addon', id='repository.streamit', name='StreamIt Repository',
-                      version='1.0.3', **{'provider-name': 'StreamIt'})
+                      version='1.0.4', **{'provider-name': 'StreamIt'})
     requires = ET.SubElement(repo, 'requires')
     ET.SubElement(requires, 'import', addon='xbmc.addon', version='19.0.0')
     extension = ET.SubElement(repo, 'extension', point='xbmc.addon.repository', name='StreamIt')
     directory = ET.SubElement(extension, 'dir', minversion='19.0.0')
     index_url = 'https://raw.githubusercontent.com/BONALAPIZZA9/streamit/main/kodi'
-    ET.SubElement(directory, 'info').text = index_url + '/addons.xml?v=' + repo.get('version')
-    ET.SubElement(directory, 'checksum', verify='sha256').text = index_url + '/addons.xml.sha256?v=' + repo.get('version')
+    ET.SubElement(directory, 'info').text = index_url + '/addons-' + repo.get('version') + '.xml'
+    ET.SubElement(directory, 'checksum', verify='sha256').text = index_url + '/addons-' + repo.get('version') + '.xml.sha256'
     ET.SubElement(directory, 'datadir').text = base_url + '/'
     meta = ET.SubElement(repo, 'extension', point='xbmc.addon.metadata')
     ET.SubElement(meta, 'summary', lang='it_IT').text = 'Installazione e aggiornamenti di StreamIt'
@@ -37,7 +37,7 @@ def build(base_url, output):
     icon = source / 'resources/media/icon.png'
     repo_dir = output / 'repository.streamit'
     repo_dir.mkdir(exist_ok=True)
-    repo_zip = repo_dir / 'repository.streamit-1.0.3.zip'
+    repo_zip = repo_dir / 'repository.streamit-1.0.4.zip'
     with zipfile.ZipFile(repo_zip, 'w', zipfile.ZIP_DEFLATED) as archive:
         archive.writestr('repository.streamit/', b'')
         archive.writestr('repository.streamit/addon.xml', repo_xml)
@@ -71,6 +71,8 @@ def build(base_url, output):
     xml = ET.tostring(listing, encoding='utf-8', xml_declaration=True)
     (output / 'addons.xml').write_bytes(xml)
     (output / 'addons.xml.sha256').write_text(hashlib.sha256(xml).hexdigest(), encoding='ascii')
+    shutil.copy2(output / 'addons.xml', output / ('addons-' + repo.get('version') + '.xml'))
+    shutil.copy2(output / 'addons.xml.sha256', output / ('addons-' + repo.get('version') + '.xml.sha256'))
     (output / '.nojekyll').touch()
     link = addon_zip.relative_to(output).as_posix()
     (output / 'index.html').write_text('''<!doctype html><html lang="it"><meta charset="utf-8">
@@ -78,9 +80,9 @@ def build(base_url, output):
 <style>body{background:#0c1b2f;color:#def3fa;font:18px system-ui;max-width:720px;margin:60px auto;padding:24px}a{color:#23dcda}li{margin:16px 0}img{width:100px;border-radius:24px}</style>
 <img src="repository.streamit/icon.png" alt="StreamIt"><h1>StreamIt per Kodi</h1>
 <p>Aggiungi questo indirizzo come sorgente in Gestione file di Kodi:</p><p><code>'''
-        + html.escape(base_url + '/') + '''</code></p><ul><li><a href="repository.streamit-1.0.3.zip">repository.streamit-1.0.3.zip</a></li>
+        + html.escape(base_url + '/') + '''</code></p><ul><li><a href="repository.streamit-1.0.4.zip">repository.streamit-1.0.4.zip</a></li>
 <li><a href="''' + html.escape(link) + '''">StreamIt — ZIP diretto</a></li></ul>
-<p>In Kodi: Installa da file ZIP → scegli la sorgente → repository.streamit-1.0.3.zip.
+<p>In Kodi: Installa da file ZIP → scegli la sorgente → repository.streamit-1.0.4.zip.
 Poi: Installa da repository → StreamIt Repository → Add-on video → StreamIt.</p></html>''', encoding='utf-8')
     for path in (repo_zip, addon_zip):
         with zipfile.ZipFile(path) as archive:
