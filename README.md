@@ -1,17 +1,18 @@
-# StreamIt per Kodi
+# StreamIt — By Ema
 
-![StreamIt](https://bonalapizza9.github.io/streamit/repository.streamit/icon.png)
+![By Ema](https://bonalapizza9.github.io/streamit/repository.streamit/icon.png)
 
-## Installazione
-Aggiungi **https://bonalapizza9.github.io/streamit/** in **Kodi → Gestione file → Aggiungi sorgente**.
-1. Add-on → Installa da file ZIP → seleziona la sorgente → `repository.streamit-1.0.0.zip`.
+## Installazione in Kodi
+Aggiungi **https://bonalapizza9.github.io/streamit/** in Gestione file → Aggiungi sorgente.
+1. Installa da file ZIP → repository.streamit-1.0.1.zip.
 2. Installa da repository → StreamIt Repository → Add-on video → StreamIt.
 
-[Scarica il repository](https://bonalapizza9.github.io/streamit/repository.streamit-1.0.0.zip) · [Scarica StreamIt 1.6.0](https://bonalapizza9.github.io/streamit/plugin.video.streamit/plugin.video.streamit-1.6.0.zip)
+[Repository ZIP](https://bonalapizza9.github.io/streamit/repository.streamit-1.0.1.zip) · [StreamIt 1.7.0 ZIP](https://bonalapizza9.github.io/streamit/plugin.video.streamit/plugin.video.streamit-1.7.0.zip)
 
-## Sorgenti e aggiornamenti
-`StreamIt-GitHub.zip` contiene tutti i sorgenti e il generatore del repository.
-GitHub Actions estrae il pacchetto, genera gli ZIP e pubblica la pagina automaticamente.
-Per aggiornare il progetto, estrai il pacchetto, modifica i sorgenti e la versione in addon.xml, poi sostituisci il pacchetto nel repository.
+## Versione 1.7.0
+Nuovo logo minimalista “By Ema”, 29 icone di categoria a 512 pixel e selezione delle locandine ad alta risoluzione disponibili nei siti.
 
+## Sorgenti e pubblicazione
+StreamIt-GitHub.zip contiene i sorgenti. Il generatore build_repository.py alla radice è quello utilizzato dalla pubblicazione.
+GitHub Actions genera automaticamente gli archivi, aggiorna l’indice nella cartella kodi e pubblica GitHub Pages.
 Richiede Kodi 19 o successivo.
