@@ -1,19 +1,22 @@
 # StreamIt — By Ema
 
-## Installazione in Kodi
-Aggiungi **https://bonalapizza9.github.io/streamit/** in Gestione file → Aggiungi sorgente.
-1. Installa da file ZIP → repository.streamit-1.0.5.zip.
-2. Installa da repository → StreamIt Repository → Add-on video → StreamIt.
+## Installazione
+Aggiungi https://bonalapizza9.github.io/streamit/ in Kodi → Gestione file → Aggiungi sorgente.
+Installa repository.streamit-1.0.6.zip, poi StreamIt da Installa da repository.
 
-[Repository ZIP](https://bonalapizza9.github.io/streamit/repository.streamit-1.0.5.zip) · [StreamIt 1.8.0 ZIP](https://bonalapizza9.github.io/streamit/plugin.video.streamit/plugin.video.streamit-1.8.0.zip)
+[Repository](https://bonalapizza9.github.io/streamit/repository.streamit-1.0.6.zip) · [StreamIt 1.9.0](https://bonalapizza9.github.io/streamit/plugin.video.streamit/plugin.video.streamit-1.9.0.zip)
 
-## Audio italiano
-StreamIt 1.8.0 imposta Italian come lingua preferita di Kodi prima dell’avvio, disattiva la priorità delle tracce predefinite e seleziona una traccia italiana disponibile all’inizio della riproduzione. Il controllo all’avvio riguarda i video avviati da StreamIt; la preferenza lingua è un’impostazione di Kodi. Puoi cambiare lingua durante la visione. Se manca una traccia italiana resta l’audio disponibile.
+## Episodi successivi
+Scegliendo un episodio, StreamIt crea una playlist dall’episodio scelto alla fine della stessa stagione.
+Il comando Avanti/Successivo del lettore Kodi passa al prossimo episodio; a fine video Kodi avvia il successivo.
+Impostazioni → Generale → Episodio successivo automatico permette di riprodurre soltanto l’episodio scelto.
+All’ultimo episodio la playlist termina. Non attraversa stagioni diverse.
+I collegamenti vengono risolti all’avvio di ogni episodio; eventuali selezioni del lettore esterno possono richiedere intervento.
 
+## Audio e immagini
+Audio italiano preferito quando disponibile; la lingua resta modificabile durante la visione.
 Logo minimalista By Ema, 29 icone 512px e locandine alla migliore risoluzione disponibile.
 
 ## Sorgenti e pubblicazione
-StreamIt-GitHub.zip contiene i sorgenti. Il generatore alla radice build_repository.py è quello utilizzato dalla pubblicazione.
-GitHub Actions aggiorna automaticamente l’indice nella cartella kodi e pubblica GitHub Pages.
-Ogni modifica ai pacchetti deve incrementare la relativa versione: non riutilizzare nomi ZIP con contenuti diversi.
-Richiede Kodi 19 o successivo.
+StreamIt-GitHub.zip contiene i sorgenti; build_repository.py alla radice è usato da GitHub Actions per generare i pacchetti, aggiornare l’indice Kodi e pubblicare Pages.
+Incrementare le versioni quando cambia il contenuto dei pacchetti. Richiede Kodi 19 o successivo.
