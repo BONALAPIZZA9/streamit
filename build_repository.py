@@ -17,7 +17,7 @@ def build(base_url, output):
     addon = ET.parse(source / 'addon.xml').getroot()
     output.mkdir(parents=True, exist_ok=True)
     repo = ET.Element('addon', id='repository.streamit', name='StreamIt Repository',
-                      version='1.0.11', **{'provider-name': 'StreamIt'})
+                      version='1.0.12', **{'provider-name': 'StreamIt'})
     requires = ET.SubElement(repo, 'requires')
     ET.SubElement(requires, 'import', addon='xbmc.addon', version='19.0.0')
     extension = ET.SubElement(repo, 'extension', point='xbmc.addon.repository', name='StreamIt')
@@ -37,7 +37,7 @@ def build(base_url, output):
     icon = source / 'resources/media/icon.png'
     repo_dir = output / 'repository.streamit'
     repo_dir.mkdir(exist_ok=True)
-    repo_zip = repo_dir / 'repository.streamit-1.0.11.zip'
+    repo_zip = repo_dir / 'repository.streamit-1.0.12.zip'
     with zipfile.ZipFile(repo_zip, 'w', zipfile.ZIP_DEFLATED) as archive:
         archive.writestr('repository.streamit/', b'')
         archive.writestr('repository.streamit/addon.xml', repo_xml)
@@ -80,9 +80,9 @@ def build(base_url, output):
 <style>body{background:#0c1b2f;color:#def3fa;font:18px system-ui;max-width:720px;margin:60px auto;padding:24px}a{color:#23dcda}li{margin:16px 0}img{width:100px;border-radius:24px}</style>
 <img src="repository.streamit/icon.png" alt="StreamIt"><h1>StreamIt per Kodi</h1>
 <p>Aggiungi questo indirizzo come sorgente in Gestione file di Kodi:</p><p><code>'''
-        + html.escape(base_url + '/') + '''</code></p><ul><li><a href="repository.streamit-1.0.11.zip">repository.streamit-1.0.11.zip</a></li>
+        + html.escape(base_url + '/') + '''</code></p><ul><li><a href="repository.streamit-1.0.12.zip">repository.streamit-1.0.12.zip</a></li>
 <li><a href="''' + html.escape(link) + '''">StreamIt — ZIP diretto</a></li></ul>
-<p>In Kodi: Installa da file ZIP → scegli la sorgente → repository.streamit-1.0.11.zip.
+<p>In Kodi: Installa da file ZIP → scegli la sorgente → repository.streamit-1.0.12.zip.
 Poi: Installa da repository → StreamIt Repository → Add-on video → StreamIt.</p></html>''', encoding='utf-8')
     for path in (repo_zip, addon_zip):
         with zipfile.ZipFile(path) as archive:
@@ -96,6 +96,7 @@ if __name__ == '__main__':
     parser.add_argument('--output', default='_site', type=Path)
     args = parser.parse_args()
     build(args.base_url, args.output)
+
 
 
 
