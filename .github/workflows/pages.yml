@@ -1,0 +1,36 @@
+name: Pubblica StreamIt
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/configure-pages@v5
+        id: pages
+      - name: Estrai sorgenti
+        run: python -m zipfile -e StreamIt-GitHub.zip source
+      - name: Genera repository Kodi
+        env:
+          BASE_URL: ${{ steps.pages.outputs.base_url }}
+        run: python source/build_repository.py --base-url "$BASE_URL" --output _site
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - uses: actions/deploy-pages@v4
+        id: deployment
