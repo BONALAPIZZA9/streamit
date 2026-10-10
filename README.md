@@ -1,29 +1,59 @@
-# StreamIt — By Ema
+<div align="center">
 
-## Installazione
-Aggiungi https://bonalapizza9.github.io/streamit/ in Kodi → Gestione file → Aggiungi sorgente.
-Installa repository.streamit-1.0.8.zip, poi StreamIt da Installa da repository.
+<img src="https://bonalapizza9.github.io/streamit/repository.streamit/icon.png" width="140" alt="StreamIt By Ema">
 
-[Repository](https://bonalapizza9.github.io/streamit/repository.streamit-1.0.8.zip) · [StreamIt 1.11.0](https://bonalapizza9.github.io/streamit/plugin.video.streamit/plugin.video.streamit-1.11.0.zip)
+# StreamIt · By Ema
 
-## Lingua audio
-Scegli Italiano o Inglese alla prima apertura. La scelta è salvata e il dialogo non ricompare.
-Puoi cambiarla in Impostazioni → Generale → Lingua audio.
-La preferenza viene applicata prima dell’avvio; il servizio seleziona la traccia anche quando il video viene reindirizzato, senza continuare a forzare la lingua durante la visione.
-Se la traccia richiesta manca o non è identificabile, compare una notifica e resta l’audio disponibile.
-Non è possibile creare una traccia audio che il video non contiene.
+Film, serie TV e IPTV, in un menu semplice per Kodi.
 
-## Aggiornamenti
-Controllo degli aggiornamenti all’avvio di Kodi (dopo 30 secondi) e ogni sei ore, rinviato durante la riproduzione.
-Il controllo usa il gestore repository di Kodi. L’installazione automatica segue le impostazioni e le regole di aggiornamento di Kodi.
-Puoi disattivare il controllo in Impostazioni → Generale → Controlla aggiornamenti automaticamente.
-La pubblicazione su GitHub continua a generare automaticamente indice, pacchetti e pagina di download.
+![Kodi 19+](https://img.shields.io/badge/Kodi-19%2B-76ead5?style=flat-square&labelColor=121c29)
+![Python 3](https://img.shields.io/badge/Python-3-76ead5?style=flat-square&labelColor=121c29)
+[![Pubblicazione](https://github.com/BONALAPIZZA9/streamit/actions/workflows/pages.yml/badge.svg)](https://github.com/BONALAPIZZA9/streamit/actions/workflows/pages.yml)
 
-## Immagini e rete
-Locandine alla risoluzione pubblicata dal sito, senza alterare gli URL per ingrandirle. Poster e immagini panoramiche sono assegnati ai rispettivi campi di Kodi; viene preferito un formato compatibile e vengono esclusi AVIF, SVG e HEIC.
-Il DNS resta quello del dispositivo. Nessun errore DNS rilevato richiede un resolver integrato; gli errori DNS e HTTPS sono ora diagnosticati separatamente. La verifica dei certificati rimane attiva.
-L’auto skip degli episodi resta rimosso.
+**[Apri il sito e scarica StreamIt →](https://bonalapizza9.github.io/streamit/)**
 
-## Sorgenti
-StreamIt-GitHub.zip contiene i sorgenti; build_repository.py alla radice è usato da GitHub Actions per generare i pacchetti e pubblicare Pages.
-Incrementare le versioni quando cambia il contenuto dei pacchetti. Richiede Kodi 19 o successivo.
+</div>
+
+---
+
+### Tutto a portata di telecomando
+
+| Film e serie | IPTV | Preferenze |
+| :--- | :--- | :--- |
+| Ricerca, generi, stagioni ed episodi | IPTV Italia Plus e playlist alternativa | Italiano o inglese, scelta salvata e modificabile |
+| Fonti configurabili dal menu | Passaggio all’alternativa se la lista italiana non si carica | Controllo della traccia audio disponibile |
+
+### Installa su Kodi
+
+1. In **Gestione file → Aggiungi sorgente**, inserisci questo indirizzo e chiamalo **StreamIt**:
+
+   ```text
+   https://bonalapizza9.github.io/streamit/
+   ```
+
+2. Apri **Add-on → Installa da file ZIP → StreamIt** e scegli il file `repository.streamit` con la versione più recente.
+3. Vai su **Installa da repository → StreamIt Repository → Add-on video → StreamIt → Installa**.
+
+Il [sito di download](https://bonalapizza9.github.io/streamit/) mostra i pacchetti attuali. Se necessario, abilita le origini sconosciute nelle impostazioni di Kodi.
+
+### Aggiornamenti e riproduzione
+
+Il repository viene pubblicato tramite GitHub Actions. Kodi gestisce gli aggiornamenti secondo le proprie impostazioni; StreamIt controlla periodicamente il repository quando non stai guardando un video.
+
+La lingua richiesta viene selezionata quando la fonte offre una traccia identificabile. La disponibilità di film, tracce audio e canali dipende dalle fonti. I canali DASH richiedono **InputStream Adaptive**.
+
+### Fonti IPTV
+
+- [IPTV Italia Plus — Tundrak](https://github.com/Tundrak/IPTV-Italia)
+- [Playlist alternativa — iptv-org](https://github.com/iptv-org/iptv)
+
+Se la lista italiana non si carica, si apre l’alternativa. Se un singolo canale non parte, puoi aprire **IPTV alternativa** manualmente.
+
+---
+
+<div align="center">
+
+**By Ema** · Progetto didattico. Usa contenuti che hai diritto di guardare.
+
+</div>
+
