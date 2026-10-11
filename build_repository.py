@@ -17,7 +17,7 @@ def build(base_url, output):
     addon = ET.parse(source / 'addon.xml').getroot()
     output.mkdir(parents=True, exist_ok=True)
     repo = ET.Element('addon', id='repository.streamit', name='StreamIt Repository',
-                      version='1.0.22', **{'provider-name': 'StreamIt'})
+                      version='1.0.23', **{'provider-name': 'StreamIt'})
     requires = ET.SubElement(repo, 'requires')
     ET.SubElement(requires, 'import', addon='xbmc.addon', version='19.0.0')
     extension = ET.SubElement(repo, 'extension', point='xbmc.addon.repository', name='StreamIt')
@@ -37,7 +37,7 @@ def build(base_url, output):
     icon = source / 'resources/media/icon.png'
     repo_dir = output / 'repository.streamit'
     repo_dir.mkdir(exist_ok=True)
-    repo_zip = repo_dir / 'repository.streamit-1.0.22.zip'
+    repo_zip = repo_dir / 'repository.streamit-1.0.23.zip'
     with zipfile.ZipFile(repo_zip, 'w', zipfile.ZIP_DEFLATED) as archive:
         archive.writestr('repository.streamit/', b'')
         archive.writestr('repository.streamit/addon.xml', repo_xml)
