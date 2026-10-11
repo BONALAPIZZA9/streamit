@@ -17,7 +17,7 @@ def build(base_url, output):
     addon = ET.parse(source / 'addon.xml').getroot()
     output.mkdir(parents=True, exist_ok=True)
     repo = ET.Element('addon', id='repository.streamit', name='StreamIt Repository',
-                      version='1.0.23', **{'provider-name': 'StreamIt'})
+                      version=addon.get('version'), **{'provider-name': 'StreamIt'})
     requires = ET.SubElement(repo, 'requires')
     ET.SubElement(requires, 'import', addon='xbmc.addon', version='19.0.0')
     extension = ET.SubElement(repo, 'extension', point='xbmc.addon.repository', name='StreamIt')
@@ -32,18 +32,20 @@ def build(base_url, output):
     ET.SubElement(meta, 'platform').text = 'all'
     ET.SubElement(meta, 'license').text = 'GPL-2.0-or-later'
     assets = ET.SubElement(meta, 'assets')
-    ET.SubElement(assets, 'icon').text = 'icon.png'
+    icon_name = 'icon-' + addon.get('version') + '.png'
+    ET.SubElement(assets, 'icon').text = icon_name
     repo_xml = ET.tostring(repo, encoding='utf-8', xml_declaration=True)
     icon = source / 'resources/media/icon.png'
     repo_dir = output / 'repository.streamit'
     repo_dir.mkdir(exist_ok=True)
-    repo_zip = repo_dir / 'repository.streamit-1.0.23.zip'
+    repo_zip = repo_dir / ('repository.streamit-' + repo.get('version') + '.zip')
     with zipfile.ZipFile(repo_zip, 'w', zipfile.ZIP_DEFLATED) as archive:
         archive.writestr('repository.streamit/', b'')
         archive.writestr('repository.streamit/addon.xml', repo_xml)
-        archive.write(icon, 'repository.streamit/icon.png')
+        archive.write(icon, 'repository.streamit/' + icon_name)
     (repo_dir / 'addon.xml').write_bytes(repo_xml)
     shutil.copy2(icon, repo_dir / 'icon.png')
+    shutil.copy2(icon, repo_dir / icon_name)
     shutil.copy2(repo_zip, output / repo_zip.name)
     shutil.copy2(repo_zip, output / 'repository.streamit-1.0.0.zip')
     addon_dir = output / addon.get('id')
